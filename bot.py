@@ -7,8 +7,6 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-app.secret_key = "your_super_secret_key"
-from flask_cors import CORS
 
 # Allow only your frontend origin, support credentials, methods, and headers
 CORS(
@@ -121,11 +119,10 @@ def chat():
 
     chat_history = session_store[session_id]
 
-    # Special command from frontend to load history
     if user_input == "__load_history__":
-    # Return chat history except system messages
-    history_for_client = [m for m in session.get("history", []) if m["role"] != "system"]
-    return jsonify({"history": history_for_client})
+        history_for_client = [m for m in session.get("history", []) if m["role"] != "system"]
+        return jsonify({"history": history_for_client})
+
 
 
     # Append user message
