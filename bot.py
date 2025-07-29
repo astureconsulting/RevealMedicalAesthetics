@@ -5,7 +5,7 @@ import re
 
 app = Flask(__name__)
 app.secret_key = "your_super_secret_key"  # Replace with your real secret key
-CORS(app)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://hum2nfe-production.up.railway.app/"}})
 
 GROQ_API_KEY = "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"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
