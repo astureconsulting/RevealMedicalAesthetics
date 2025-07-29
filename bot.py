@@ -87,13 +87,11 @@ def chat():
     if not user_input:
         return jsonify({"error": "Empty message received"}), 400
 
-    # Initialize chat history in session if not existing
+    # Initialize chat history in session if it doesn't exist yet
     if "history" not in session:
         session["history"] = [{"role": "system", "content": SYSTEM_PROMPT_EN}]
 
     chat_history = session["history"]
-
-    # Append user message
     chat_history.append({"role": "user", "content": user_input})
 
     headers = {
@@ -116,11 +114,11 @@ def chat():
         assistant_message = data["choices"][0]["message"]["content"]
         cleaned_message = format_response(assistant_message)
 
-        # Append assistant message
         chat_history.append({"role": "assistant", "content": cleaned_message})
 
-        # Save updated chat history back to session
+        # Save updated chat history back in session
         session["history"] = chat_history
+        session.modified = True  # Mark session as modified to ensure it saves
 
         return jsonify({"response": cleaned_message})
 
@@ -130,7 +128,6 @@ def chat():
             "details": str(e),
             "groq_response": response.text
         }), 500
-
 
 @app.route("/reset", methods=["POST"])
 def reset():
