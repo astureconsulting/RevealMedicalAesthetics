@@ -102,7 +102,10 @@ def chat():
 
     # Special command from frontend to load history
     if user_input == "__load_history__":
-        return jsonify({"history": chat_history})
+    # Return chat history except system messages
+    history_for_client = [m for m in session.get("history", []) if m["role"] != "system"]
+    return jsonify({"history": history_for_client})
+
 
     # Append user message
     chat_history.append({"role": "user", "content": user_input})
