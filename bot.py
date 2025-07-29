@@ -8,8 +8,7 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = "your_super_secret_key"
-CORS(app)
-
+CORS(app, supports_credentials=True, origins=["http://localhost:your_port", "https://hum2nfe-production.up.railway.app/"])
 GROQ_API_KEY = "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"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
