@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(
     app,
     supports_credentials=True,
-    origins=["https://revealmedicalaestheticsfe-production.up.railway.app"],
+    origins=["https://revealmedicalaestheticsfe-production.up.railway.app/"],
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "OPTIONS"]
 )
