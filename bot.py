@@ -8,25 +8,13 @@ import requests
 
 app = Flask(__name__)
 
-# Allow only your frontend origin, support credentials, methods, and headers
 CORS(
     app,
     supports_credentials=True,
-    origins=["https://revealmedicalaestheticsfe-production.up.railway.app/"],
+    origins=["https://revealmedicalaestheticsfe-production.up.railway.app"],
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "OPTIONS"]
 )
-
-# If you want to be explicit about OPTIONS preflight, add this:
-@app.before_request
-def handle_options():
-    if request.method == 'OPTIONS':
-        resp = make_response()
-        resp.headers['Access-Control-Allow-Origin'] = "https://revealmedicalaestheticsfe-production.up.railway.app/"
-        resp.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
-        resp.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS'
-        resp.headers['Access-Control-Allow-Credentials'] = 'true'
-        return resp
 
 GROQ_API_KEY = "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"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
