@@ -22,7 +22,7 @@ CORS(
 def handle_options():
     if request.method == 'OPTIONS':
         resp = make_response()
-        resp.headers['Access-Control-Allow-Origin'] = "https://antiwrinklefe-production.up.railway.app"
+        resp.headers['Access-Control-Allow-Origin'] = "https://revealmedicalaestheticsfe-production.up.railway.app/"
         resp.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
         resp.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS'
         resp.headers['Access-Control-Allow-Credentials'] = 'true'
